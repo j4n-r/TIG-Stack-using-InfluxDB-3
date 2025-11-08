@@ -19,6 +19,21 @@ services:
       retries: 3
     restart: unless-stopped
 
+  explorer:
+    image: influxdata/influxdb3-ui:1.4.0
+    container_name: influxdb3-explorer
+    pull_policy: always
+    command: ["--mode=admin"]
+    ports:
+      - "8888:80"
+    volumes:
+      - ./db:/db:rw
+      - ./config:/app-root/config:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    environment:
+      SESSION_SECRET_KEY: ${SESSION_SECRET_KEY:-changeme123456789012345678901234}
+    restart: unless-stopped
+
   telegraf:
     container_name: telegraf
     image: telegraf
