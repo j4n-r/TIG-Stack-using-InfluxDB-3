@@ -34,23 +34,23 @@ services:
       SESSION_SECRET_KEY: ${SESSION_SECRET_KEY:-changeme123456789012345678901234}
     restart: unless-stopped
 
-  telegraf:
-    container_name: telegraf
-    image: telegraf
-    depends_on:
-      influxdb3-core:
-        condition: service_healthy
-    # Optionally, you can switch to depend on influxdb3-enterprise if using that
-    environment:
-      - INFLUXDB_HOST=${INFLUXDB_HOST}
-      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
-      - INFLUXDB_ORG=${INFLUXDB_ORG}
-      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
-      - TELEGRAF_COLLECTION_INTERVAL=${TELEGRAF_COLLECTION_INTERVAL}
-      - HOSTNAME=telegraf
-    volumes:
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
-    restart: unless-stopped
+  # telegraf:
+  #   container_name: telegraf
+  #   image: telegraf
+  #   depends_on:
+  #     influxdb3-core:
+  #       condition: service_healthy
+  #   # Optionally, you can switch to depend on influxdb3-enterprise if using that
+  #   environment:
+  #     - INFLUXDB_HOST=${INFLUXDB_HOST}
+  #     - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
+  #     - INFLUXDB_ORG=${INFLUXDB_ORG}
+  #     - INFLUXDB_BUCKET=${INFLUXDB_BUCKET}
+  #     - TELEGRAF_COLLECTION_INTERVAL=${TELEGRAF_COLLECTION_INTERVAL}
+  #     - HOSTNAME=telegraf
+  #   volumes:
+  #     - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+  #   restart: unless-stopped
 
   grafana:
     image: grafana/grafana
