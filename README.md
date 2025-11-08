@@ -85,3 +85,7 @@ docker-compose down
 ```sh
 docker-compose down -v
 ```
+
+# URLs
+Grafana: http://localhost:3000
+Explorer: http://localhost:8000
